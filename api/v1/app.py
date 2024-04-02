@@ -11,7 +11,7 @@ import os
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 app.register_blueprint(app_views)
-CORS(app, resources={'/*': {'origins': app_host}})
+CORS(app, resources={r"/api/*": {"origins": "0.0.0.0"}})
 
 
 @app.teardown_appcontext
