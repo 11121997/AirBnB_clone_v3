@@ -5,7 +5,7 @@ from storage import models
 from app_views import api.v1.views
 from flask import Flask, jsonify
 from flask_cors import CORS
-import os
+from os import getenv
 
 
 app = Flask(__name__)
@@ -21,8 +21,7 @@ def teardown(self):
 
 
 if __name__ == "__main__":
-    host = os.getenv("HBNB_API_HOST") if os.getenv("HBNB_API_HOST") /
-    else "0.0.0.0"
+    host = getenv("HBNB_API_HOST") if getenv("HBNB_API_HOST") else "0.0.0.0"
     port = os.getenv("HBNB_API_PORT") if os.getenv("HBNB_API_PORT") else 5000
     app.run(
         host=host,
