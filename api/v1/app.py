@@ -2,7 +2,7 @@
 """Status of your API"""
 
 from storage import models
-from app_views import api.v1.views
+from api.v1.views import app_views
 from flask import Flask, jsonify
 from flask_cors import CORS
 from os import getenv
