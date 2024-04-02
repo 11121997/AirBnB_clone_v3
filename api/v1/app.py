@@ -4,14 +4,12 @@
 from models import storage
 from api.v1.views import app_views
 from flask import Flask, jsonify
-from flask_cors import CORS
 from os import getenv
 
 
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 app.register_blueprint(app_views)
-CORS(app, resources={r"/api/*": {"origins": "0.0.0.0"}})
 
 
 @app.teardown_appcontext
@@ -21,8 +19,12 @@ def teardown(self):
 
 
 if __name__ == "__main__":
-    host = getenv("HBNB_API_HOST") if getenv("HBNB_API_HOST") else "0.0.0.0"
-    port = os.getenv("HBNB_API_PORT") if os.getenv("HBNB_API_PORT") else 5000
+    host = getenv('HBNB_API_HOST')
+    port = getenv('HBNB_API_PORT')
+    if not host:
+        host = '0.0.0.0'
+    if not port:
+        port = '5000'
     app.run(
         host=host,
         port=port,
